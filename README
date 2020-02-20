@@ -2,3 +2,7 @@ This is Grub2 but it's edited so it can be used on tablets that doesn't have an 
 The "volume up" key functions as the "enter" key and the "volume down" functions as the "down" key. 
 And after the pointer reaches the end of the list, it goes to the first entry. 
 And there is a delay (250ms) after every changing menu entry beacause volume keys originally move cursor too fast
+
+These are commands I used with grub-mkimage:
+grub-mkimage -O x86_64-efi -o bootx64.efi -p "" --config=init.cfg part_gpt part_msdos ntfs ntfscomp hfsplus fat ext2 normal chain boot configfile linux multiboot ls cat echo configfile search search_fs_file search_fs_uuid search_label usb
+grub-mkimage -O i386-efi -o bootia32.efi -p "" --config=init.cfg part_gpt part_msdos ntfs ntfscomp hfsplus fat ext2 normal chain boot configfile linux multiboot ls cat echo configfile search search_fs_file search_fs_uuid search_label usb
