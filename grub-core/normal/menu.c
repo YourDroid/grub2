@@ -367,6 +367,7 @@ grub_menu_execute_with_fallback (grub_menu_t menu,
 }
 
 static struct grub_menu_viewer *viewers;
+static grub_uint64_t start = -1;						
 
 static void
 menu_set_chosen_entry (int entry)
@@ -727,6 +728,10 @@ run_menu (grub_menu_t menu, int nested, int *auto_boot)
 	    case GRUB_TERM_CTRL | 'n':
 	    case GRUB_TERM_KEY_DOWN:
 	    case 'v':
+	      if(start == -1 || grub_get_time_ms () - start > 250)
+                start = grub_get_time_ms ();								
+              else break;
+
 	      if (current_entry < menu->size - 1)
 		current_entry++;
 	      else current_entry = 0;
